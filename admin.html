@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin Global Market</title></head>
+<body style="padding: 20px; font-family: sans-serif;">
+  <h2>Dora Kayan Kasuwa</h2>
+  <input type="text" id="boxId" placeholder="Misali: box1">
+  <input type="text" id="imgUrl" placeholder="Link din hoto anan">
+  <button onclick="updateBox()">Dora Yanzu</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDJfUePiQV5R1YAcnq-zvfd3ty4lbzDs1M",
+      authDomain: "global-market-admin.firebaseapp.com",
+      projectId: "global-market-admin",
+      storageBucket: "global-market-admin.firebasestorage.app",
+      messagingSenderId: "259715265619",
+      appId: "1:259715265619:web:313919773f57cc5fb9c2a6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.updateBox = async () => {
+      const id = document.getElementById('boxId').value;
+      const url = document.getElementById('imgUrl').value;
+      await setDoc(doc(db, "kayayyaki", id), { url: url });
+      alert("An dora hoton cikin nasara!");
+    }
+  </script>
+</body>
+</html>
